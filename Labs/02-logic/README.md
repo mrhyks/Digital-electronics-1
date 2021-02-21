@@ -43,6 +43,9 @@
 | 11 | 0 | 0 | 0 | 0 |
 | 10 | 0 | 0 |  | 0 |
 
-![alt text](https://raw.githubusercontent.com/mrhyks/Digital-electronics-1/main/Labs/01-gates/01-gates.png "")
+![alt text](https://github.com/mrhyks/Digital-electronics-1/blob/main/Labs/02-logic/greater_sop.gif "")
+![alt text](https://github.com/mrhyks/Digital-electronics-1/blob/main/Labs/02-logic/less_pos.gif "")
+![alt text](https://github.com/mrhyks/Digital-electronics-1/blob/main/Labs/02-logic/design.png "")
+![alt text](https://github.com/mrhyks/Digital-electronics-1/blob/main/Labs/02-logic/testbench.png "")
+![alt text](https://github.com/mrhyks/Digital-electronics-1/blob/main/Labs/02-logic/console.png "")
 
-https://github.com/mrhyks/Digital-electronics-1/blob/main/Labs/02-logic/greater_sop.gif
