@@ -1,6 +1,6 @@
 # H1 Digital-electronics-1 
 ## 02-gates
-[Hykš 02-Logic](https://www.edaplayground.com/x/kUqX)
+[Hykš 02-Logic EDA](https://www.edaplayground.com/x/kUqX)
 
 
 | **Dec. equivalent** | **B[1:0]** | **A[1:0]** | **B is greater than A** | **B equals A** | **B is less than A** |
