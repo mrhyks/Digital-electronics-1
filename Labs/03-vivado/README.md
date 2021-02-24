@@ -48,14 +48,17 @@ p_stimulus : process
 
 Pro vytvoření nového projektu zapneme aplikaci Vivado a postupujeme následovně:
 File->Projet->New->Next->Vyplníme Project name a location->Necháme zvolený RTL project->Target a Simulator language: VHDL->Create File->vyplníme File name->OK->Next->Next->Překlikneme na záložku Boards a zvolíme vhodnou desku->Next->Finish
+
 Následujicí okna pouze odklikáme.
 
 Je třeba přidat si test bench a to v okně:
 Sources->Simulation Sources->Pravým tlačítkem myši->Add Source->Ponecháme Add or create simulation sources->Create Files->Vyplníme File name->OK->Finish
+
 Následujicí okna opět odklikáme.
 
 Pro přidání XDC souboru opět v okně:
 Sources->Constrains->Pravým tlačítem myši->Add Source->Ponecháme Add or create constrains->Create File->Vyplníme File name->OK->Finish
+
 Následujicí okna opět odklikáme.
 V okně Sources otevřeme námi vytvořená .xdc soubor a vložíme zdrojový kód od výrobce.
 
