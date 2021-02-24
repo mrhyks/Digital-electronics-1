@@ -1,47 +1,46 @@
 # H1 Digital-electronics-1 
-## 02-gates
-[Hykš 02-Logic EDA](https://www.edaplayground.com/x/kUqX)
+## 03-Vivado
 
+```vhdl
+architecture Behavioral of mux_2bit_4to1 is
+begin
+       f_o <= a_i when (sel_i = "00" ) else
+              b_i when (sel_i = "01" ) else
+              c_i when (sel_i = "10" ) else
+              d_i;
 
-| **Dec. equivalent** | **B[1:0]** | **A[1:0]** | **B is greater than A** | **B equals A** | **B is less than A** |
-| :-: | :-: | :-: | :-: | :-: | :-: |
-| 0 | 0 0 | 0 0 | 0 | 1 | 0 |
-| 1 | 0 0 | 0 1 | 0 | 0 | 1 |
-| 2 | 0 0 | 1 0 | 0 | 0 | 1 |
-| 3 | 0 0 | 1 1 | 0 | 0 | 1 |
-| 4 | 0 1 | 0 0 | 1 | 0 | 0 |
-| 5 | 0 1 | 0 1 | 0 | 1 | 0 |
-| 6 | 0 1 | 1 0 | 0 | 0 | 1 |
-| 7 | 0 1 | 1 1 | 0 | 0 | 1 |
-| 8 | 1 0 | 0 0 | 1 | 0 | 0 |
-| 9 | 1 0 | 0 1 | 1 | 0 | 0 |
-| 10 | 1 0 | 1 0 | 0 | 1 | 0 |
-| 11 | 1 0 | 1 1 | 0 | 0 | 1 |
-| 12 | 1 1 | 0 0 | 1 | 0 | 0 |
-| 13 | 1 1 | 0 1 | 1 | 0 | 0 |
-| 14 | 1 1 | 1 0 | 1 | 0 | 0 |
-| 15 | 1 1 | 1 1 | 0 | 1 | 0 |
+end architecture Behavioral;
 
-| **B1,B0\A1,A0** | **00** | **01** | **11** | **10** |
-| :-: | :-: | :-: | :-: | :-: |
-| 00 | 1 |  |  |  |
-| 01 |  | 1 |  |  |
-| 11 |  |  | 1 |  |
-| 10 |  |  |  | 1 |
+```
 
-| **B1,B0\A1,A0** | **00** | **01** | **11** | **10** |
-| :-: | :-: | :-: | :-: | :-: |
-| 00 |  |  |  |  |
-| 01 | 1 |  |  |  |
-| 11 | 1 | 1 |  | 1 |
-| 10 | 1 | 1 |  |  |
+```vhdl
+p_stimulus : process
+    begin
+        -- Report a note at the begining of stimulus process
+        report "Stimulus process started" severity note;
 
-| **B1,B0\A1,A0** | **00** | **01** | **11** | **10** |
-| :-: | :-: | :-: | :-: | :-: |
-| 00 | 0 |  |  |  |
-| 01 | 0 | 0 |  |  |
-| 11 | 0 | 0 | 0 | 0 |
-| 10 | 0 | 0 |  | 0 |
+        s_d   <= "00" ; s_c <= "00" ; s_b <= "00" ; s_a <= "00" ; s_sel <= "00" ; wait for 100 ns;
+        
+        s_a   <= "01" ; wait for 100 ns;
+        s_b   <= "01" ; wait for 100 ns;
+        
+        s_sel <= "01" ; wait for 100 ns;
+        s_c   <= "01" ; wait for 100 ns;
+        s_d   <= "01" ; wait for 100 ns;
+        
+        s_d   <= "10" ; s_c <= "10" ; s_b <= "10" ; s_a <= "10" ; wait for 100 ns;
+        s_sel <= "11" ;
+        
+        s_d   <= "10" ; s_c <= "11" ; s_b <= "01" ; s_a <= "00" ; wait for 100 ns;
+        s_sel <= "10" ;
+        
+        s_d   <= "11" ; s_c <= "01" ; s_b <= "10" ; s_a <= "11" ; wait for 100 ns;
+        s_sel <= "01" ;
+        -- Report a note at the end of stimulus process
+        report "Stimulus process finished" severity note;
+        wait;
+    end process p_stimulus;
+```
 
 ![alt text](https://github.com/mrhyks/Digital-electronics-1/blob/main/Labs/02-logic/greater_sop.gif "")
 ![alt text](https://github.com/mrhyks/Digital-electronics-1/blob/main/Labs/02-logic/less_pos.gif "")
