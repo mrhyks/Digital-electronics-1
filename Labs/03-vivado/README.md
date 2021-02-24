@@ -1,6 +1,8 @@
 # H1 Digital-electronics-1 
 ## 03-Vivado
 
+![alt text](https://github.com/mrhyks/Digital-electronics-1/blob/main/Labs/03-vivado/tabulka.png "Tabulka zapojení přepínačů a led diod")
+
 ```vhdl
 architecture Behavioral of mux_2bit_4to1 is
 begin
@@ -42,9 +44,7 @@ p_stimulus : process
     end process p_stimulus;
 ```
 
-![alt text](https://github.com/mrhyks/Digital-electronics-1/blob/main/Labs/02-logic/greater_sop.gif "")
-![alt text](https://github.com/mrhyks/Digital-electronics-1/blob/main/Labs/02-logic/less_pos.gif "")
-![alt text](https://github.com/mrhyks/Digital-electronics-1/blob/main/Labs/02-logic/design.png "")
-![alt text](https://github.com/mrhyks/Digital-electronics-1/blob/main/Labs/02-logic/testbench.png "")
-![alt text](https://github.com/mrhyks/Digital-electronics-1/blob/main/Labs/02-logic/console.png "")
+![alt text](https://github.com/mrhyks/Digital-electronics-1/blob/main/Labs/03-vivado/prubehy.png "Průběhy signálů multiplexoru")
+
+
 
