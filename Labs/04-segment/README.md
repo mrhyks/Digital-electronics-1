@@ -101,7 +101,7 @@ p_stimulus : process
     end process p_stimulus;
 ````
 
-![simulace](04-simulation.jpg)
+![simulace](04-simulation.png)
 
 
 ````vhdl
