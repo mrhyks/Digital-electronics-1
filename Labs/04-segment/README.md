@@ -33,7 +33,7 @@
 | F | 1111 | 0 | 1 | 1 | 1 | 0 | 0 | 0 |
 
 
-´´´´vhdl
+````vhdl
 p_7seg_decoder : process(hex_i)
     begin
         case hex_i is
@@ -71,9 +71,9 @@ p_7seg_decoder : process(hex_i)
                 seg_o <= "0111000";     -- F
         end case;
     end process p_7seg_decoder;
-´´´´
+````
 
-´´´´vhdl
+````vhdl
 p_stimulus : process
     begin
         report "Stimulus process started" severity note;
@@ -99,12 +99,12 @@ p_stimulus : process
         
 
     end process p_stimulus;
-´´´´
+````
 
 ![simulace](04-simulation.jpg)
 
 
-´´´´vhdl
+````vhdl
 hex2seg : entity work.hex_7seg
         port map(
             hex_i    => SW,
@@ -118,7 +118,7 @@ hex2seg : entity work.hex_7seg
             seg_o(1) => CF,
             seg_o(0) => CG
         );
-´´´´
+````
 
 | **Hex** | **Inputs** | **LED4** | **LED5** | **LED6** | **LED7** |
 | :-: | :-: | :-: | :-: | :-: | :-: |
@@ -139,6 +139,6 @@ hex2seg : entity work.hex_7seg
 | E | 1110 | 0 | 1 | 0 | 0 |
 | F | 1111 | 0 | 1 | 1 | 0 |
 
-´´´´vhdl
+````vhdl
 
-´´´´
+````
