@@ -1,0 +1,4 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Test/Documents/mrhyks/Digital-electronics-1/Labs/04-segment/new_display/new_display.sim/sim_1/impl/func/xsim/tb_top_func_impl.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'hex_7seg'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/Test/Documents/mrhyks/Digital-electronics-1/Labs/04-segment/new_display/new_display.srcs/sim_1/new/tb_top.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'tb_top'
