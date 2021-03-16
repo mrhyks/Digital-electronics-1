@@ -20,7 +20,7 @@
    | 500&nbsp;ms | 50 000 000 | `x"2FA_F080"` | `b"0010_1111_1010_1111_0000_1000_0000"` |
    | 1&nbsp;sec | 100 000 000 | `x"5F5_E100"` | `b"0101_1111_0101_1110_0001_0000_0000"` |
 
-   ````vhdl
+   ```vhdl
    p_cnt_up_down : process(clk)
     begin
         if rising_edge(clk) then
@@ -40,9 +40,9 @@
             end if;
         end if;
     end process p_cnt_up_down;
-   ````
+   ```
 
-   ``vhdl
+   ```vhdl
    --------------------------------------------------------------------
     -- Reset generation process
     --------------------------------------------------------------------
@@ -73,10 +73,10 @@
         report "Stimulus process finished" severity note;
         wait;
     end process p_stimulus;
-   ``
+   ```
   <img src="bidirectional.png">
    
-   ``vhdl
+   ```vhdl
    begin
     clk_en0 : entity work.clock_enable
         generic map(
@@ -117,5 +117,5 @@
     AN <= b"1111_1110";   
      
 end Behavioral;
-   ``
+   ```
    <img src="top.jpg">
