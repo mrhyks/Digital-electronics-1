@@ -1,13 +1,13 @@
 # H1 Digital-electronics-1 
 ## 05-segment
 	
-	| **Button** | **=>**| **Pin** |
-	| :-: | :-: | :-: |
-	| BTNC | => | N17 |
-	| BTNU | => | M18 |
-	| BTNL | => | P17 |
-	| BTNR | => | M17 |
-	| BTND | => | P18 |
+| **Buttons** | **=>** | **pin** |
+| :-: | :-: | :-: |
+| BTNC | => | N17 |
+| BTNU | => | M18 |
+| BTNL | => | P17 |
+| BTNR | => | M17 | 
+| BTND | => | P18 |
 	
 
 
