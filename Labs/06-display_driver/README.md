@@ -198,4 +198,4 @@ begin
 end architecture Behavioral;
 ```
 
-<img src="simulation.jpg">
+<img src="driver_schematic.jpg">
