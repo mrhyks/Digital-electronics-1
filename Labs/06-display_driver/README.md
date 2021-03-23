@@ -1,44 +1,7 @@
-# 06-display_driver
-[xalkan00-Digital-electronics-1](https://github.com/xalkan00/Digital-electronics-1)
+# H1 Digital-electronics-1 
+## 06-display_driver
 
-
-
-## 1.Preparation tasks (done before the lab at home). Submit:
-### 1.1 Timing diagram figure for displaying value 3.142.
-``` vhdl
-{
-  signal:
-  [
-    ['Digit position',
-      {name: 'Common anode: AN(3)', wave: 'xx01..01..01'},
-      {name: 'AN(2)', wave: 'xx101..01..0'},
-      {name: 'AN(1)', wave: 'xx1.01..01..'},
-      {name: 'AN(0)', wave: 'xx1..01..01.'},
-    ],
-    ['Seven-segment data',
-      {name: '4-digit value to display', wave: 'xx3333555599', data: ['3','1','4','2','3','1','4','2','3','1']},
-      {name: 'Cathod A: CA', wave: 'xx01.0.1.0.1'},
-      {name: 'CB', wave: 'xx0.........'},
-      {name: 'CC', wave: 'xx0..10..10.'},
-      {name: 'CD', wave: 'xx01.0.1.0.1'},
-      {name: 'CE', wave: 'xx1..01..01.'},
-      {name: 'CF', wave: 'xx1.01..01..'},
-      {name: 'CG', wave: 'xx010..10..1'},
-    ],
-    {name: 'Decimal point: DP', wave: 'xx01..01..01'},
-  ],
-  head:
-  {
-    text: '                    4ms   4ms   4ms   4ms   4ms   4ms   4ms   4ms   4ms   4ms',
-  },
-}
-```
-
-<img src="https://github.com/xalkan00/Digital-electronics-1/blob/main/Labs/06-display_driver/image/1.png" />
-
-## 2.Display driver. Submit:
-
-### 2.1 Listing of VHDL code of the process p_mux with syntax highlighting.
+<img src="diagram.png">
 
 ``` VHDL
     p_mux : process(s_cnt, data0_i, data1_i, data2_i, data3_i, dp_i)
@@ -67,22 +30,7 @@
     end process p_mux;
 ```
 
-### 2.2 Listing of VHDL testbench file tb_driver_7seg_4digits with syntax highlighting and asserts,
-
 ``` VHDL
-library ieee;
-use ieee.std_logic_1164.all;
-
-------------------------------------------------------------------------
--- Entity declaration for testbench
-------------------------------------------------------------------------
-entity tb_driver_7seg_4digits is
-    -- Entity of testbench is always empty
-end entity tb_driver_7seg_4digits;
-
-------------------------------------------------------------------------
--- Architecture body for testbench
-------------------------------------------------------------------------
 architecture testbench of tb_driver_7seg_4digits is
 
     -- Local constants
@@ -197,11 +145,7 @@ uut_driver_7seg : entity work.driver_7seg_4digits
 
 end architecture testbench;
 ```
-
-### 2.3 Screenshot with simulated time waveforms; always display all inputs and outputs,
-<img src="https://github.com/xalkan00/Digital-electronics-1/blob/main/Labs/06-display_driver/image/simulace%201.png" />
-
-### 2.4 Listing of VHDL architecture of the top layer.
+<img src="simulation.png">
 
 ``` VHDL
 architecture Behavioral of top is
@@ -254,7 +198,4 @@ begin
 end architecture Behavioral;
 ```
 
-## 3.Eight-digit driver. Submit:
-
-### 3.1 Image of the driver schematic. The image can be drawn on a computer or by hand.
-<img src="https://github.com/xalkan00/Digital-electronics-1/blob/main/Labs/06-display_driver/image/Ručně%20psané_2021-03-18_113406.jpg" />
+<img src="simulation.jpg">
