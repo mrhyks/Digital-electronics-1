@@ -1,0 +1,10 @@
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+Note: Stimulus process started
+Time: 0 ps  Iteration: 0  Process: /tb_d_latch/p_stimulus  File: C:/Users/Test/Documents/mrhyks/Digital-electronics-1/Labs/07-ffs/flip_flops/flip_flops.srcs/sim_1/new/tb_d_latch.vhd
+Note: asdasd
+Time: 0 ps  Iteration: 0  Process: /tb_d_latch/p_stimulus  File: C:/Users/Test/Documents/mrhyks/Digital-electronics-1/Labs/07-ffs/flip_flops/flip_flops.srcs/sim_1/new/tb_d_latch.vhd
+Note: Stimulus process started
+Time: 370 ns  Iteration: 0  Process: /tb_d_latch/p_stimulus  File: C:/Users/Test/Documents/mrhyks/Digital-electronics-1/Labs/07-ffs/flip_flops/flip_flops.srcs/sim_1/new/tb_d_latch.vhd
+Note: Stimulus process started
+Time: 740 ns  Iteration: 0  Process: /tb_d_latch/p_stimulus  File: C:/Users/Test/Documents/mrhyks/Digital-electronics-1/Labs/07-ffs/flip_flops/flip_flops.srcs/sim_1/new/tb_d_latch.vhd
