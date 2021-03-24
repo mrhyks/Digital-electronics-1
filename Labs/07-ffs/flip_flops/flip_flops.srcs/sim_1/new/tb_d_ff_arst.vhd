@@ -42,7 +42,6 @@ architecture Behavioral of tb_d_ff_arst is
     --Local signals
     signal s_clk_100MHz : std_logic;
 
-    signal s_clk : std_logic;
     signal s_arst : std_logic ;
     signal s_d : std_logic ;
     signal s_q : std_logic ;
@@ -50,7 +49,7 @@ architecture Behavioral of tb_d_ff_arst is
 begin
     uut_d_ff_arst: entity work.d_ff_arst
     port map(
-        clk => s_clk,
+        clk => s_clk_100MHz,
         arst => s_arst,
         d => s_d,
         q => s_q,
@@ -70,34 +69,38 @@ begin
     p_reset_gen : process
     begin
         s_arst <= '0';
+        wait for 28 ns;
         
-        wait for 38 ns;
         s_arst <= '1';
+        wait for 13ns;
         
-        wait for 53ns;
-        s_arst <= '0';  
+        s_arst <= '0'; 
         
         wait for 17 ns;
+        s_arst <= '1'; 
+             
+        wait for 33ns;
+        s_arst <= '0';
+                     
+        wait for 660 ns;        
         s_arst <= '1';
-        
-        wait for 300ns;
-        s_arst <= '1';
+
         wait;     
     end process p_reset_gen;
     p_stimulus : process
     begin
         report "Stimulus process started" severity note;
         s_d <= '0';
-        s_clk <= '0';
+        
         --d sekv
         wait for 14ns;
         s_d <= '1';
         wait for 10ns;
-        s_d <= '0';
+        s_d <= '0';     
         wait for 6ns;
-        
-        
-        wait for 10ns;
+        --assert()
+        --report "";
+        wait for 4ns;
         s_d <= '1';
         wait for 10ns;
         s_d <= '0';
@@ -111,7 +114,7 @@ begin
         s_d <= '0';
         --/d sekv
         
-        s_en <= '1';
+
         --d sekv
         wait for 10ns;
         s_d <= '1';

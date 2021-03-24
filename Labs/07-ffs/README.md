@@ -117,3 +117,117 @@ p_reset_gen : process
     end process p_stimulus;
 ````
 <img src="d_latch.png">
+
+````vhdl
+p_d_ff_arst : process (clk, arst)
+    begin 
+        if(arst ='1')then
+            q     <= '0';
+            q_bar <= '1';
+        elsif rising_edge(clk) then
+            q     <= d;
+            q_bar <= not d;
+        end if;
+    end process p_d_ff_arst;
+````
+````vhdl
+p_clk_gen : process
+    begin
+        while now < 750 ns loop         -- 75 periods of 100MHz clock
+            s_clk_100MHz <= '0';
+            wait for c_CLK_100MHZ_PERIOD / 2;
+            s_clk_100MHz <= '1';
+            wait for c_CLK_100MHZ_PERIOD / 2;
+        end loop;
+        wait;
+    end process p_clk_gen;
+
+    p_reset_gen : process
+    begin
+        s_arst <= '0';
+        wait for 28 ns;
+        
+        s_arst <= '1';
+        wait for 13ns;
+        
+        s_arst <= '0'; 
+        
+        wait for 17 ns;
+        s_arst <= '1'; 
+             
+        wait for 33ns;
+        s_arst <= '0';
+                     
+        wait for 660 ns;        
+        s_arst <= '1';
+
+        wait;     
+    end process p_reset_gen;
+    p_stimulus : process
+    begin
+        report "Stimulus process started" severity note;
+        s_d <= '0';
+        
+        --d sekv
+        wait for 14ns;
+        s_d <= '1';
+        wait for 10ns;
+        s_d <= '0';     
+        wait for 6ns;
+        --assert()
+        --report "";
+        wait for 4ns;
+        s_d <= '1';
+        wait for 10ns;
+        s_d <= '0';
+        wait for 10ns;
+        s_d <= '1';
+        wait for 10ns;
+        s_d <= '0';
+        wait for 10ns;
+        s_d <= '1';
+        wait for 10ns;
+        s_d <= '0';
+        --/d sekv
+        
+
+        --d sekv
+        wait for 10ns;
+        s_d <= '1';
+        wait for 10ns;
+        s_d <= '0';
+        wait for 10ns;
+        s_d <= '1';
+        wait for 10ns;
+        s_d <= '0';
+        wait for 10ns;
+        s_d <= '1';
+        wait for 10ns;
+        s_d <= '0';
+        wait for 10ns;
+        s_d <= '1';
+        wait for 10ns;
+        s_d <= '0';
+        --/d sekv
+        
+        --d sekv
+        wait for 10ns;
+        s_d <= '1';
+        wait for 10ns;
+        s_d <= '0';
+        wait for 10ns;
+        s_d <= '1';
+        wait for 10ns;
+        s_d <= '0';
+        wait for 10ns;
+        s_d <= '1';
+        wait for 10ns;
+        s_d <= '0';
+        wait for 10ns;
+        s_d <= '1';
+        wait for 10ns;
+        s_d <= '0';
+        --/d sekv
+    end process p_stimulus;
+````
+<img src="d_ff_arst.png">
