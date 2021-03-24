@@ -3,7 +3,8 @@
 <img src="D_ff.png">
 <img src="JK_ff.png">
 <img src="T_ff.png">
-| **clk** | **d** | **q(n)** | **q(n+1)** | **Comments** |
+   
+   | **clk** | **d** | **q(n)** | **q(n+1)** | **Comments** |
    | :-: | :-: | :-: | :-: | :-: |
    | ^ | 0 | 0 | 0 | No Change |
    | ^ | 0 | 1 | 0 | No Change |
