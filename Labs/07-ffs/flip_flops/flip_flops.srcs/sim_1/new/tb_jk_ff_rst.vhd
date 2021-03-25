@@ -42,16 +42,15 @@ architecture Behavioral of tb_jk_ff_rst is
     --Local signals
     signal s_clk_100MHz : std_logic;
 
-    signal s_clk : std_logic;
-    signal s_rst : std_logic ;
-    signal s_j : std_logic ;
-    signal s_k : std_logic ;
-    signal s_q : std_logic ;
+    signal s_rst : std_logic;
+    signal s_j : std_logic;
+    signal s_k : std_logic;
+    signal s_q : std_logic;
     signal s_q_bar : std_logic;
 begin
-    uut_d_ff_arst: entity work.jk_ff_rst
+    uut_jk_ff_rst: entity work.jk_ff_rst
     port map(
-        clk => s_clk,
+        clk => s_clk_100MHz,
         rst => s_rst,
         j => s_j,
         k => s_k,
@@ -71,86 +70,73 @@ begin
 
     p_reset_gen : process
     begin
-        s_arst <= '0';
+        s_rst <= '0';
         
-        wait for 38 ns;
-        s_arst <= '1';
+        wait for 28 ns;
+        s_rst <= '1';
         
-        wait for 53ns;
-        s_arst <= '0';  
+        wait for 14ns;
+        s_rst <= '0';  
         
         wait for 17 ns;
-        s_arst <= '1';
+        s_rst <= '1';
+        
+        wait for 33 ns;
+        s_rst <= '0';
         
         wait for 300ns;
-        s_arst <= '1';
+        s_rst <= '1';
         wait;     
     end process p_reset_gen;
     p_stimulus : process
     begin
         report "Stimulus process started" severity note;
-        s_d <= '0';
-        s_clk <= '0';
+        s_j <= '0';
+        s_k <= '0';
         --d sekv
-        wait for 14ns;
-        s_d <= '1';
-        wait for 10ns;
-        s_d <= '0';
-        wait for 6ns;
+        wait for 40ns;
+        s_j <= '0';
+        s_k <= '0';
+        wait for 7ns;
+        s_j <= '0';
+        s_k <= '1';
+        wait for 7ns;
+        s_j <= '1';
+        s_k <= '0';
+        wait for 7ns;
+        s_j <= '1';
+        s_k <= '1';
         
+        wait for 7ns;
+        s_j <= '0';
+        s_k <= '0';
+        wait for 7ns;
+        s_j <= '0';
+        s_k <= '1';
+        wait for 7ns;
+        s_j <= '1';
+        s_k <= '0';
+        wait for 7ns;
+        s_j <= '1';
+        s_k <= '1';
         
-        wait for 10ns;
-        s_d <= '1';
-        wait for 10ns;
-        s_d <= '0';
-        wait for 10ns;
-        s_d <= '1';
-        wait for 10ns;
-        s_d <= '0';
-        wait for 10ns;
-        s_d <= '1';
-        wait for 10ns;
-        s_d <= '0';
-        --/d sekv
-        
-        s_en <= '1';
-        --d sekv
-        wait for 10ns;
-        s_d <= '1';
-        wait for 10ns;
-        s_d <= '0';
-        wait for 10ns;
-        s_d <= '1';
-        wait for 10ns;
-        s_d <= '0';
-        wait for 10ns;
-        s_d <= '1';
-        wait for 10ns;
-        s_d <= '0';
-        wait for 10ns;
-        s_d <= '1';
-        wait for 10ns;
-        s_d <= '0';
-        --/d sekv
-        
-        --d sekv
-        wait for 10ns;
-        s_d <= '1';
-        wait for 10ns;
-        s_d <= '0';
-        wait for 10ns;
-        s_d <= '1';
-        wait for 10ns;
-        s_d <= '0';
-        wait for 10ns;
-        s_d <= '1';
-        wait for 10ns;
-        s_d <= '0';
-        wait for 10ns;
-        s_d <= '1';
-        wait for 10ns;
-        s_d <= '0';
-        --/d sekv
+        wait for 7ns;
+        s_j <= '0';
+        s_k <= '0';
+        wait for 7ns;
+        s_j <= '0';
+        s_k <= '1';
+        wait for 7ns;
+        s_j <= '1';
+        s_k <= '0';
+        wait for 7ns;
+        s_j <= '1';
+        s_k <= '1';
+        wait for 5ns;
+        s_j <= '0';
+        s_k <= '0';
+        report "Stimulus process finished" severity note;
+        wait;
     end process p_stimulus; 
 
 end Behavioral;
