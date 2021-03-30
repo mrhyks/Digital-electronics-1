@@ -2,13 +2,16 @@
 ## 07-flip_flops
 ## 1. Přírava
 <img src="D_ff.png">
+
    | **clk** | **d** | **q(n)** | **q(n+1)** | **Comments** |
    | :-: | :-: | :-: | :-: | :-: |
    | ^ | 0 | 0 | 0 | No Change |
    | ^ | 0 | 1 | 0 | Set |
    | ^ | 1 | 0 | 1 | No Change |
    | ^ | 1 | 1 | 1 | Set |
+   
 <img src="JK_ff.png">
+
    | **clk** | **j** | **k** | **q(n)** | **q(n+1)** | **Comments** |
    | :-: | :-: | :-: | :-: | :-: | :-- |
    | ^ | 0 | 0 | 0 | 0 | No change |
@@ -19,7 +22,9 @@
    | ^ | 1 | 0 | 1 | 1 | Set |
    | ^ | 1 | 1 | 0 | 1 | Toggle |
    | ^ | 1 | 1 | 1 | 0 | Toggle |
+   
 <img src="T_ff.png">
+
    | **clk** | **t** | **q(n)** | **q(n+1)** | **Comments** |
    | :-: | :-: | :-: | :-: | :-- |
    | ^ | 0 | 0 | 0 | 1 | No Change |
