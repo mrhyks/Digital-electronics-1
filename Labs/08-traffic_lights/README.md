@@ -13,6 +13,8 @@
 | LD16 | N15, M16, R12 | `1,0,0` | `1,1,0` | `0,1,0` |
 | LD17 | N16, R11, G14 | `1,0,0` | `1,1,0` | `0,1,0` |
 
+<img src="traffic.png">
+
 ````vhdl
 p_traffic_fsm : process(clk)
     begin
@@ -130,6 +132,8 @@ p_traffic_fsm : process(clk)
         end case;
     end process p_output_fsm;
 ````
+<img src="traffic_wide.png">
+<img src="traffic_detail.png">
 
 
 | **Clock** | ^ | ^ | ^ | ^ | ^ | ^ | ^ | ^ | ^ | ^ | ^ | ^ |
@@ -137,3 +141,98 @@ p_traffic_fsm : process(clk)
 | **Car North** | `0` | `0` | `0` | `1` | `0` | `0` | `1` | `0` | `0` | `1` | `0` | `0` |
 | **Car East**  | `1` | `0` | `0` | `0` | `0` | `0` | `1` | `0` | `0` | `1` | `0` | `0` | 
 | **State** | STOP1 | WEST GO | WEST WAIT | STOP2 | SOUTH GO | SOUTH WAIT | STOP1 | BOTH CARS 1 | CARS WAIT 1 | STOP2 | BOTCH CARS 2 | CARS WAIT 2 |
+
+<img src="smart traffic.png">
+
+````vhdl
+p_smart_traffic_fsm : process(clk)
+    begin
+        if rising_edge(clk) then
+            if (reset = '1') then       -- Synchronous reset
+                s_smart_state <= STOP1 ;      -- Set initial state
+                s_cnt   <= c_ZERO;      -- Clear all bits
+            elsif (s_en = '1') then
+                case s_smart_state is
+                    when STOP1 =>
+                        if (s_cnt < c_DELAY_1SEC) then
+                            s_cnt <= s_cnt + 1;
+                        elsif(s_car_west='1')then
+                            s_state <= WEST_GO;
+                            s_cnt   <= c_ZERO;
+                        else
+                        s_smart_state <= BOTH_CARS1;
+                        s_cnt   <= c_ZERO;
+                        end if;
+                    when WEST_GO =>
+                        if (s_cnt < c_DELAY_4SEC) then
+                            s_cnt <= s_cnt + 1;
+                        else
+                            s_state <= WEST_WAIT;
+                            s_cnt   <= c_ZERO;
+                        end if; 
+                    when WEST_WAIT =>
+                        if (s_cnt < c_DELAY_2SEC) then
+                            s_cnt <= s_cnt + 1;
+                        else
+                            s_smart_state <= STOP2;
+                            s_cnt   <= c_ZERO;
+                        end if;
+                    when BOTH_CARS1 =>
+                        if (s_cnt < c_DELAY_4SEC) then
+                            s_cnt <= s_cnt + 1;
+                        else
+                            s_smart_state <= CARS_WAIT1;
+                            s_cnt   <= c_ZERO;
+                        end if; 
+                    when CARS_WAIT1 =>
+                        if (s_cnt < c_DELAY_2SEC) then
+                            s_cnt <= s_cnt + 1;
+                        else
+                            s_smart_state <= STOP2;
+                            s_cnt   <= c_ZERO;
+                        end if;
+                    when STOP2 =>
+                        if (s_cnt < c_DELAY_1SEC) then
+                            s_cnt <= s_cnt + 1;
+                        elsif(s_car_south='1')then
+                            s_smart_state <= SOUTH_GO;
+                            s_cnt   <= c_ZERO;
+                        else
+                            s_smart_state <= SOUTH_GO;
+                            s_cnt   <= c_ZERO;
+                        end if;
+                    when SOUTH_GO =>
+                        if (s_cnt < c_DELAY_4SEC) then
+                            s_cnt <= s_cnt + 1;
+                        else
+                            s_smart_state <= SOUTH_WAIT;
+                            s_cnt   <= c_ZERO;
+                        end if;
+                    when SOUTH_WAIT =>
+                        if (s_cnt < c_DELAY_2SEC) then
+                            s_cnt <= s_cnt + 1;
+                        else
+                            s_smart_state <= STOP1;
+                            s_cnt   <= c_ZERO;
+                        end if;
+                    when BOTH_CARS2 =>
+                        if (s_cnt < c_DELAY_4SEC) then
+                            s_cnt <= s_cnt + 1;
+                        else
+                            s_smart_state <= CARS_WAIT2;
+                            s_cnt   <= c_ZERO;
+                        end if;
+                    when CARS_WAIT2 =>
+                        if (s_cnt < c_DELAY_2SEC) then
+                            s_cnt <= s_cnt + 1;
+                        else
+                            s_smart_state <= STOP1;
+                            s_cnt   <= c_ZERO;
+                        end if;
+                    when others =>
+                        s_smart_state <= STOP1;
+                end case;
+            end if; -- Synchronous reset
+        end if; -- Rising edge
+    end process p_smart_traffic_fsm;
+````
