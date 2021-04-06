@@ -46,11 +46,24 @@ architecture Behavioral of tlc is
                      STOP2,
                      SOUTH_GO,
                      SOUTH_WAIT);
+    type sm_state is (STOP1,
+                     WEST_GO,
+                     WEST_WAIT,
+                     STOP2,
+                     SOUTH_GO,
+                     SOUTH_WAIT,
+                     BOTH_CARS1,
+                     CARS_WAIT1,
+                     BOTH_CARS2,
+                     CARS_WAIT2);
     -- Define the signal that uses different states
     signal s_state  : t_state;
+    signal s_smart_state : sm_state;
 
     -- Internal clock enable
     signal s_en     : std_logic;
+    signal s_car_south : std_logic;
+    signal s_car_west : std_logic;
     -- Local delay counter
     signal   s_cnt  : unsigned(5 - 1 downto 0);
 
@@ -170,6 +183,97 @@ begin
             end if; -- Synchronous reset
         end if; -- Rising edge
     end process p_traffic_fsm;
+    
+    p_smart_traffic_fsm : process(clk)
+    begin
+        if rising_edge(clk) then
+            if (reset = '1') then       -- Synchronous reset
+                s_smart_state <= STOP1 ;      -- Set initial state
+                s_cnt   <= c_ZERO;      -- Clear all bits
+            elsif (s_en = '1') then
+                case s_smart_state is
+                    when STOP1 =>
+                        if (s_cnt < c_DELAY_1SEC) then
+                            s_cnt <= s_cnt + 1;
+                        elsif(s_car_west='1')then
+                            s_state <= WEST_GO;
+                            s_cnt   <= c_ZERO;
+                        else
+                        s_smart_state <= BOTH_CARS1;
+                        s_cnt   <= c_ZERO;
+                        end if;
+                    when WEST_GO =>
+                        if (s_cnt < c_DELAY_4SEC) then
+                            s_cnt <= s_cnt + 1;
+                        else
+                            s_state <= WEST_WAIT;
+                            s_cnt   <= c_ZERO;
+                        end if; 
+                    when WEST_WAIT =>
+                        if (s_cnt < c_DELAY_2SEC) then
+                            s_cnt <= s_cnt + 1;
+                        else
+                            s_smart_state <= STOP2;
+                            s_cnt   <= c_ZERO;
+                        end if;
+                    when BOTH_CARS1 =>
+                        if (s_cnt < c_DELAY_4SEC) then
+                            s_cnt <= s_cnt + 1;
+                        else
+                            s_smart_state <= CARS_WAIT1;
+                            s_cnt   <= c_ZERO;
+                        end if; 
+                    when CARS_WAIT1 =>
+                        if (s_cnt < c_DELAY_2SEC) then
+                            s_cnt <= s_cnt + 1;
+                        else
+                            s_smart_state <= STOP2;
+                            s_cnt   <= c_ZERO;
+                        end if;
+                    when STOP2 =>
+                        if (s_cnt < c_DELAY_1SEC) then
+                            s_cnt <= s_cnt + 1;
+                        elsif(s_car_south='1')then
+                            s_smart_state <= SOUTH_GO;
+                            s_cnt   <= c_ZERO;
+                        else
+                            s_smart_state <= SOUTH_GO;
+                            s_cnt   <= c_ZERO;
+                        end if;
+                    when SOUTH_GO =>
+                        if (s_cnt < c_DELAY_4SEC) then
+                            s_cnt <= s_cnt + 1;
+                        else
+                            s_smart_state <= SOUTH_WAIT;
+                            s_cnt   <= c_ZERO;
+                        end if;
+                    when SOUTH_WAIT =>
+                        if (s_cnt < c_DELAY_2SEC) then
+                            s_cnt <= s_cnt + 1;
+                        else
+                            s_smart_state <= STOP1;
+                            s_cnt   <= c_ZERO;
+                        end if;
+                    when BOTH_CARS2 =>
+                        if (s_cnt < c_DELAY_4SEC) then
+                            s_cnt <= s_cnt + 1;
+                        else
+                            s_smart_state <= CARS_WAIT2;
+                            s_cnt   <= c_ZERO;
+                        end if;
+                    when CARS_WAIT2 =>
+                        if (s_cnt < c_DELAY_2SEC) then
+                            s_cnt <= s_cnt + 1;
+                        else
+                            s_smart_state <= STOP1;
+                            s_cnt   <= c_ZERO;
+                        end if;
+                    when others =>
+                        s_smart_state <= STOP1;
+                end case;
+            end if; -- Synchronous reset
+        end if; -- Rising edge
+    end process p_smart_traffic_fsm;
 
     --------------------------------------------------------------------
     -- p_output_fsm:
@@ -198,10 +302,6 @@ begin
             when SOUTH_WAIT =>
                 south_o <= "110";
                 west_o  <= "100";
-
-                -- WRITE YOUR CODE HERE
-
-
             when others =>
                 south_o <= "100";   -- Red
                 west_o  <= "100";   -- Red
